@@ -1,0 +1,42 @@
+{
+  "name": "cnx-garnish",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc $( [[ \"${WATCH}\" = true ]] &&  echo --watch )",
+    "lint": "eslint src/**.ts test/**.ts $( [[ \"$FIX\" = true ]] && echo --fix ) && echo -e \"\\n\\033[1;32mLINT SUCCESS\\033[0m\\n\"",
+    "test": "nyc --reporter=lcov ava $( [[ \"${VERBOSE}\" == true ]] && echo -v ) ./test/*.ts && genhtml coverage/lcov.info -o coverage/"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.139",
+    "@types/node": "^12.7.7",
+    "@types/node-sass": "^4.11.0",
+    "eslint": "^6.4.0",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.12.0",
+    "safe-types": "^4.25.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "ava": "^2.4.0",
+    "eslint-config-standard-with-typescript": "^9.0.0",
+    "eslint-plugin-import": "2",
+    "eslint-plugin-node": "9",
+    "eslint-plugin-promise": "4",
+    "eslint-plugin-standard": "4",
+    "nyc": "^14.1.1",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}

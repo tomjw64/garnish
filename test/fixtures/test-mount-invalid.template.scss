@@ -1,0 +1,6 @@
+#{"{{mount}}"} {
+  > span {
+    display: "{{ data.display }}";
+    required: "{{ data.required }}";
+  }
+}

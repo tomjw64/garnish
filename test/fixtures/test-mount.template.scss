@@ -1,0 +1,6 @@
+#{"{{mount}}"} {
+  > span {
+    display: "{{ data.display }}";
+    optional: "{{ data.optional || omit() }}";
+  }
+}
