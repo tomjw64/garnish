@@ -56,10 +56,6 @@ class TestBuilder extends Builder {
     test: new ReqBuilderData<string>()
   }
 
-  getData(): { [_: string]: BuilderData<any> } {
-    return this.data
-  }
-
   setTest(value: string): this {
     this.data.test.setValue(value)
     return this
@@ -76,4 +72,41 @@ test('Builders can collect their data', ava => {
 
 test('Builders throw an error when their data does not validate', ava => {
   ava.throws(() => new TestBuilder().collect())
+})
+
+test('Builders do not throw an error if validation is explicity skipped', ava => {
+  ava.notThrows(() => new TestBuilder().collect({ validate: false }))
+})
+
+class TestBuilderClone extends Builder {
+  data = {
+    val1: new ReqBuilderData<string>(),
+    val2: new OptBuilderData<number>()
+  }
+
+  setVal1(value: string): this {
+    this.data.val1.setValue(value)
+    return this
+  }
+
+  setVal2(value: number): this {
+    this.data.val2.setValue(value)
+    return this
+  }
+}
+
+test('Builders can be cloned and preserve their data', ava => {
+  const initial = new TestBuilderClone()
+    .setVal2(34)
+  const clone = initial
+    .clone()
+    .setVal1('MyValue')
+  ava.deepEqual(
+    initial.collect({ validate: false }),
+    { val2: 34 }
+  )
+  ava.deepEqual(
+    clone.collect(),
+    { val2: 34, val1: 'MyValue' }
+  )
 })
