@@ -1,4 +1,4 @@
-#{#{"{{ mount }}"}} {
+#{'"{{ mount }}"'} {
   margin-bottom: v-grid(2);
 
   > .os-title {
@@ -19,7 +19,7 @@
       text-transform: uppercase;
     }
     &::before {
-      background: "{{ data.iconUrl }}";
+      background: '"{{ data.iconUrl }}"';
       background-size: contain;
       height: v-grid(2);
       width: v-grid(2);
