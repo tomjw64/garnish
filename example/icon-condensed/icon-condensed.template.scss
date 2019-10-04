@@ -1,0 +1,35 @@
+#{#{"{{ mount }}"}} {
+  margin-bottom: v-grid(2);
+
+  > .os-title {
+    margin-bottom: half-v-grid(1);
+    font-weight: 900;
+    letter-spacing: 0.05rem;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    font-size: font-scale(1);
+    line-height: line-height(0);
+    font-family: "{{ data.titleFont }}";
+
+    > .os-title-label {
+      display: inline-block;
+      max-width: h-grid(10);
+      word-wrap: normal;
+      text-transform: uppercase;
+    }
+    &::before {
+      background: "{{ data.iconUrl }}";
+      background-size: contain;
+      height: v-grid(2);
+      width: v-grid(2);
+      display: inline-block;
+      position: relative;
+      content: "''";
+      padding-right: h-grid(1);
+    }
+  }
+  > .os-note-body {
+    border-bottom: 0.2rem solid "{{ data.borderColor }}";
+  }
+}
